@@ -1,6 +1,9 @@
 FROM node:lts-alpine
 
 WORKDIR /app
+ADD https://github.com/grafana/k6/releases/download/v0.39.0/k6-v0.39.0-linux-amd64.tar.gz /app/k6-v0.39.0-linux-amd64.tar.gz
+RUN tar -xzf k6-v0.39.0-linux-amd64.tar.gz
+RUN mv k6-v0.39.0-linux-amd64/k6 /usr/bin/k6
 
 RUN apk update && apk add --no-cache nmap && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
@@ -16,3 +19,4 @@ RUN apk update && apk add --no-cache nmap && \
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 CMD [ "npm", "run" ,"installAndBrowse"]
+
