@@ -1,0 +1,15 @@
+{
+  "name": "headless2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "installAndBrowse": "npm install && node ./browser.js",
+    "test": "node ./test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^15.5.0"
+  }
+}
