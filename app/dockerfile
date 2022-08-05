@@ -1,22 +1,20 @@
 FROM node:lts-alpine
 
 WORKDIR /app
+
+# Install k6
 ADD https://github.com/grafana/k6/releases/download/v0.39.0/k6-v0.39.0-linux-amd64.tar.gz /app/k6-v0.39.0-linux-amd64.tar.gz
 RUN tar -xzf k6-v0.39.0-linux-amd64.tar.gz
 RUN mv k6-v0.39.0-linux-amd64/k6 /usr/bin/k6
 
+# Update alpine and chromium
 RUN apk update && apk add --no-cache nmap && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/community >> /etc/apk/repositories && \
     echo @edge http://nl.alpinelinux.org/alpine/edge/main >> /etc/apk/repositories && \
     apk update && \
     apk add --no-cache \
-      chromium \
-      harfbuzz \
-      "freetype>2.8" \
-      ttf-freefont \
-      nss
+      chromium
       
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-
+# Run ket script per me instalu npm edhe me run browser.js per me mbet container running
 CMD [ "npm", "run" ,"installAndBrowse"]
 
